@@ -1,4 +1,4 @@
-package day1
+package day01
 
 import (
 	"bufio"
@@ -9,7 +9,7 @@ import (
 )
 
 func Part1() {
-	input, err := os.Open("day1/input.txt")
+	input, err := os.Open("day01/input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
