@@ -50,7 +50,7 @@ func Part1() {
 		scanner.Scan()
 		p2 := scanner.Text()
 
-		sum = sum + winner(p1, p2)
+		sum += winner(p1, p2)
 	}
 
 	fmt.Printf("Total score: %v\n", sum)

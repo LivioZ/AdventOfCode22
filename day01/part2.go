@@ -20,6 +20,7 @@ func Part2() {
 
 	sum := 0
 	first, second, third := -math.MaxInt32, -math.MaxInt32, -math.MaxInt32
+
 	for scanner.Scan() {
 		line := scanner.Text()
 		if line == "" {
@@ -39,7 +40,7 @@ func Part2() {
 			if err != nil {
 				log.Fatal("Not a number\n", err)
 			}
-			sum = sum + num
+			sum += num
 		}
 	}
 

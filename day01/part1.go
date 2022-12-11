@@ -30,7 +30,7 @@ func Part1() {
 			if err != nil {
 				log.Fatal("Not a number\n", err)
 			}
-			sum = sum + num
+			sum += num
 		}
 	}
 

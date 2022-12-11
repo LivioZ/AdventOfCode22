@@ -14,6 +14,7 @@ func Part1() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer input.Close()
 
 	scanner := bufio.NewScanner(input)
 
