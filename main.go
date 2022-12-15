@@ -8,7 +8,8 @@ import (
 	//"aoc22/day05"
 	//"aoc22/day06"
 	//"aoc22/day07"
-	"aoc22/day08"
+	//"aoc22/day08"
+	"aoc22/day09"
 )
 
 func main() {
@@ -26,7 +27,8 @@ func main() {
 	//day06.Part2()
 	//day07.Part1()
 	//day07.Part2()
-	day08.Part1()
-	day08.Part2()
+	//day08.Part1()
+	//day08.Part2()
+	day09.Part1()
 }
 
