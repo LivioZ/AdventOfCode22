@@ -7,59 +7,68 @@ import (
 	"os"
 )
 
-type pos struct {
-	i, j int
+type coord struct {
+	x, y float64
 }
 
-func (t *pos) moveTo(h *pos) {
-	if (math.Abs(float64(h.i - t.i))) > (math.Abs(float64(h.j - t.j))) {
-		// higher vertical distance
-		t.j = h.j      // same horizontal position
-		if h.i > t.i { // head under tail
-			t.i = h.i - 1
-		} else if h.i < t.i { // head over tail
-			t.i = h.i + 1
+func (t *coord) isTouching(h *coord) bool {
+	return math.Abs(float64(h.x-t.x)) <= 1 && math.Abs(float64(h.y-t.y)) <= 1
+}
+
+func (t *coord) moveTo(h *coord) {
+	if !t.isTouching(h) {
+		var movx, movy float64
+		if t.x == h.x { // if same x, x never changes
+			movx = 0
+		} else { // else we need to figure out the direction
+			// h.x - t.x is the direction (positive or negative)
+			// we normalize its value to 1 or -1
+			// because we only have to move by at most 1 unit
+			movx = (h.x - t.x) / math.Abs(float64(h.x-t.x))
 		}
-	} else if (math.Abs(float64(h.j - t.j))) > (math.Abs(float64(h.i - t.i))) {
-		// higher horizontal distance
-		t.i = h.i      // same vertical position
-		if h.j > t.j { // head on the right of tail
-			t.j = h.j - 1
-		} else if h.j < t.j { // head on the left of tail
-			t.j = h.j + 1
+
+		// same for y
+		if t.y == h.y {
+			movy = 0
+		} else {
+			movy = (h.y - t.y) / math.Abs(float64(h.y-t.y))
 		}
+
+		// update the tail position
+		t.x += movx
+		t.y += movy
 	}
 }
 
 func Part1() {
 	input, _ := os.Open("day09/input.txt")
 	defer input.Close()
-
 	scanner := bufio.NewScanner(input)
 
 	var direction string
 	var steps int
-	var grid = make(map[pos]bool)
-	grid[pos{0, 0}] = true
-	var h, t pos
+	var tailVisited = make(map[coord]bool)
+	tailVisited[coord{0, 0}] = true
+	var h, t coord
 
 	for scanner.Scan() {
 		fmt.Sscanf(scanner.Text(), "%s %d", &direction, &steps)
+		// one step at a time to get every position the tail goes
 		for steps > 0 {
 			switch direction {
 			case "L":
-				h.j -= 1
+				h.x--
 			case "R":
-				h.j += 1
+				h.x++
 			case "U":
-				h.i -= 1
+				h.y++
 			case "D":
-				h.i += 1
+				h.y--
 			}
 			steps--
 			t.moveTo(&h)
-			grid[t] = true
+			tailVisited[t] = true
 		}
 	}
-	fmt.Printf("Number of positions the tail visited: %v\n", len(grid))
+	fmt.Printf("Number of positions the tail visited: %v\n", len(tailVisited))
 }
