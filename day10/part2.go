@@ -32,9 +32,9 @@ func Part2() {
 
 			// check sprite position overlap
 			if cycleCount == r-1 || cycleCount == r || cycleCount == r+1 {
-				fmt.Printf("#")
+				fmt.Printf("##")
 			} else {
-				fmt.Printf(".")
+				fmt.Printf("  ")
 			}
 
 			// check if end of operation
