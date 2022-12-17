@@ -3,6 +3,7 @@ package day09
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"math"
 	"os"
 )
@@ -41,7 +42,10 @@ func (t *coord) moveTo(h *coord) {
 }
 
 func Part1() {
-	input, _ := os.Open("day09/input.txt")
+	input, err := os.Open("day09/input.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer input.Close()
 	scanner := bufio.NewScanner(input)
 

@@ -3,11 +3,15 @@ package day10
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 )
 
 func Part2() {
-	input, _ := os.Open("day10/input.txt")
+	input, err := os.Open("day10/input.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer input.Close()
 	scanner := bufio.NewScanner(input)
 
