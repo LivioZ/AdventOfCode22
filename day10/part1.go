@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-var targetCycles map[int]bool = map[int]bool{
+var targetCycles = map[int]bool{
 	20:  true,
 	60:  true,
 	100: true,
