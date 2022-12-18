@@ -16,8 +16,6 @@ type monkey struct {
 	testAndThrow func(int) int
 }
 
-var monkeys = make([]monkey, 0)
-
 func Part1() {
 	input, err := os.Open("day11/input.txt")
 	if err != nil {
@@ -25,6 +23,8 @@ func Part1() {
 	}
 	defer input.Close()
 	scanner := bufio.NewScanner(input)
+
+	var monkeys = make([]monkey, 0)
 
 	for i := 0; scanner.Scan(); i++ {
 		scanner.Scan() // skip monkey line
