@@ -11,9 +11,9 @@ import (
 )
 
 type monkey struct {
-	items []int
-	operation func(int)int
-	testAndThrow func(int)int
+	items        []int
+	operation    func(int) int
+	testAndThrow func(int) int
 }
 
 var monkeys = make([]monkey, 0)
@@ -25,7 +25,7 @@ func Part1() {
 	}
 	defer input.Close()
 	scanner := bufio.NewScanner(input)
-	
+
 	for i := 0; scanner.Scan(); i++ {
 		scanner.Scan() // skip monkey line
 		var newMonkey monkey
@@ -43,9 +43,9 @@ func Part1() {
 
 		// operation line
 		var op rune
-		var val int	
-		if scanner.Text() == "  Operation: new = old * old"{
-			newMonkey.operation = func(val int) int {return (val * val) / 3}
+		var val int
+		if scanner.Text() == "  Operation: new = old * old" {
+			newMonkey.operation = func(val int) int { return (val * val) / 3 }
 		} else {
 			fmt.Sscanf(scanner.Text(), "  Operation: new = old %c %d", &op, &val)
 			newMonkey.operation = buildOperation(op, val)
@@ -91,10 +91,10 @@ func Part1() {
 			moreInspects2 = n
 		}
 	}
-	fmt.Printf("The level of monkey business after 20 rounds is: %v\n", moreInspects1 * moreInspects2)
+	fmt.Printf("The level of monkey business after 20 rounds is: %v\n", moreInspects1*moreInspects2)
 }
 
-func buildOperation(op rune, val int) func(int)int {
+func buildOperation(op rune, val int) func(int) int {
 	if op == '+' {
 		return func(i int) int {
 			return (i + val) / 3
@@ -106,9 +106,9 @@ func buildOperation(op rune, val int) func(int)int {
 	}
 }
 
-func buildTestAndThrow(divBy, ift, iff int) func(int)int {
+func buildTestAndThrow(divBy, ift, iff int) func(int) int {
 	return func(i int) int {
-		if i % divBy == 0 {
+		if i%divBy == 0 {
 			return ift
 		} else {
 			return iff
