@@ -23,7 +23,7 @@ func Part1() {
 
 	var start point
 	var end point
-	
+
 	visited := make(map[point]bool)
 	distance := make(map[point]int)
 
@@ -31,7 +31,7 @@ func Part1() {
 	// 'E' = 69
 	// 'a' to 'z' = 97 to 122
 
-	for i := 0; scanner.Scan(); i++{
+	for i := 0; scanner.Scan(); i++ {
 		row := make([]rune, 0)
 		for j, c := range scanner.Text() {
 			row = append(row, c)
@@ -73,21 +73,21 @@ func Part1() {
 }
 
 func neighbors(p point) (neighbors []point) {
-	n := len(heightmap) // number of rows
+	n := len(heightmap)    // number of rows
 	m := len(heightmap[0]) // number of columns
 
 	// search neighbor up down left right
-	for _, dir := range [][]int{{1,0}, {-1,0}, {0,1}, {0, -1}} {
+	for _, dir := range [][]int{{1, 0}, {-1, 0}, {0, 1}, {0, -1}} {
 		ii := p.i + dir[0]
 		jj := p.j + dir[1]
 
 		// check rows and colums bounds
 		if 0 <= ii && ii < n && 0 <= jj && jj < m {
 			// check if neighbor is at most one step higher
-			if heightmap[ii][jj] <= heightmap[p.i][p.j] + 1 {
+			if heightmap[ii][jj] <= heightmap[p.i][p.j]+1 {
 				neighbors = append(neighbors, point{ii, jj})
 			}
 		}
 	}
-	return 
+	return
 }
