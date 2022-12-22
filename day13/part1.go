@@ -8,8 +8,6 @@ import (
 	"os"
 )
 
-var indexSum int
-
 func Part1() {
 	input, err := os.Open("day13/input.txt")
 	if err != nil {
@@ -18,7 +16,9 @@ func Part1() {
 	defer input.Close()
 	scanner := bufio.NewScanner(input)
 
-	for i := 1; scanner.Scan(); i++{
+	var indexSum int
+
+	for i := 1; scanner.Scan(); i++ {
 		// package 1
 		line := []byte(scanner.Text())
 		var p1 []any // each packet (line) is always a list
@@ -26,7 +26,7 @@ func Part1() {
 		if err != nil {
 			log.Fatal(err)
 		}
-	
+
 		// package 2
 		scanner.Scan()
 		line = []byte(scanner.Text())
@@ -39,10 +39,10 @@ func Part1() {
 		if isOrdered(p1, p2) == 1 {
 			indexSum += i
 		}
-		
+
 		scanner.Scan() // skip empty line
 	}
-	fmt.Printf("Sum of indexes of pairs in right order: %v\n", indexSum)	
+	fmt.Printf("Sum of indexes of pairs in right order: %v\n", indexSum)
 }
 
 func isOrdered(left, right any) int {
@@ -57,7 +57,7 @@ func isOrdered(left, right any) int {
 			b := right.(float64)
 			if a < b {
 				return 1
-			} 
+			}
 			if a == b {
 				return 0
 			}
@@ -85,7 +85,7 @@ func isOrdered(left, right any) int {
 		if cond == -1 {
 			return -1
 		}
-		
+
 		i++
 	}
 
