@@ -44,6 +44,7 @@ func main() {
 	//day12.Part2()
 	//day13.Part1()
 	//day13.Part2()
-	day14.Part1()
+	//day14.Part1()
+	day14.Part2()
 }
 
