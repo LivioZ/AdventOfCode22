@@ -74,19 +74,19 @@ func Part1() {
 
 func willRest(p point) bool {
 	if p.y+1 <= lastRock.y {
-		if cave[point{p.x, p.y + 1}] { // down
-			if cave[point{p.x - 1, p.y + 1}] { // down-left
-				if cave[point{p.x + 1, p.y + 1}] { // down-right
+		if cave[point{p.x, p.y+1}] { // down
+			if cave[point{p.x-1, p.y+1}] { // down-left
+				if cave[point{p.x+1, p.y+1}] { // down-right
 					cave[point{p.x, p.y}] = true
 					return true
 				} else {
-					return willRest(point{p.x + 1, p.y + 1})
+					return willRest(point{p.x+1, p.y+1})
 				}
 			} else {
-				return willRest(point{p.x - 1, p.y + 1})
+				return willRest(point{p.x-1, p.y+1})
 			}
 		} else {
-			return willRest(point{p.x, p.y + 1})
+			return willRest(point{p.x, p.y+1})
 		}
 	} else {
 		return false
